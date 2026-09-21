@@ -9,6 +9,7 @@ pipeline {
         MONGO_DB_CREDS = credentials('mongo-db-credentials')
         MONGO_USERNAME = credentials('mongo-db-username')
         MONGO_PASSWORD = credentials('mongo-db-password')
+        MONGO_URI = mongodb+srv://supercluster.d83jj.mongodb.net/superData
     }
     stages {
         stage('Installing Dependencies') {
@@ -61,6 +62,7 @@ pipeline {
             steps {
                 sh 'npm test'
                 junit allowEmptyResults: true, stdioRetention: '', testResults: 'test-results.xml'
+                
             }
         }
         stage('Code Coverage') {
